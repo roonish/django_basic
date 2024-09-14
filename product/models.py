@@ -38,6 +38,16 @@ class Customer(models.Model):
      birth_Date = models.DateField(max_length=100,null=True)
      membership = models.CharField(max_length=1,choices=MEMBERSHIP_CHOICES,default=MEMBERSHIP_BRONZE)
 
+     #To edit migrations file or change table name or add indexes etc
+     #use inner class
+     class Meta:
+          db_table = 'store_customer'
+          indexes = [
+               models.Index(fields=[
+                    'last_name','first_name'
+               ])
+          ]
+
 class Order(models.Model):
      ORDER_PENDING = 'P'
      ORDER_COMPLETE = 'C'
